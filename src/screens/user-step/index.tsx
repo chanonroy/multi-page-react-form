@@ -13,7 +13,7 @@ import {
   validEmail,
 } from '../../utils/validations'
 
-export default function UserForm({
+export default function UserStep({
   onSubmit,
 }: {
   onSubmit: (user: UserPayload) => void

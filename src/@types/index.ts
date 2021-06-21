@@ -12,3 +12,8 @@ export interface UserPayload {
   emailAddress: string
   password: string
 }
+
+export interface PrivacyPayload {
+  receiveUpdates: boolean
+  receiveCommunication: boolean
+}
