@@ -5,7 +5,7 @@ import Card from '../../components/card'
 import CheckboxInput from '../../components/checkbox-input'
 import Container from '../../components/container'
 
-export default function PrivacyForm({
+export default function PrivacyStep({
   onSubmit,
 }: {
   onSubmit: (payload: PrivacyPayload) => void
