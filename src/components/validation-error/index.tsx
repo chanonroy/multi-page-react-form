@@ -3,9 +3,9 @@ import { Colors } from '../../@types'
 
 const ValidationError = styled.div`
   color: ${Colors.danger};
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
 `
 
 export default ValidationError

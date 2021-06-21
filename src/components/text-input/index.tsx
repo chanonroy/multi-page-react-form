@@ -26,7 +26,20 @@ const StyledInput = styled.input<{ error?: boolean }>`
 `
 
 export default function TextInput({
+  onEnterKey,
   ...props
-}: { error?: boolean } & InputHTMLAttributes<HTMLInputElement>) {
-  return <StyledInput {...props} />
+}: {
+  error?: boolean
+  onEnterKey?: () => void
+} & InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <StyledInput
+      onKeyUp={({ key }) => {
+        if (key === 'Enter') {
+          if (onEnterKey) onEnterKey()
+        }
+      }}
+      {...props}
+    />
+  )
 }

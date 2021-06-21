@@ -1,3 +1,4 @@
+import Button from '../../components/button'
 import Card from '../../components/card'
 import Container from '../../components/container'
 import TextInput from '../../components/text-input'
@@ -33,8 +34,15 @@ export default function UserForm() {
     <Container style={{ paddingTop: 40, paddingBottom: 20 }}>
       <Card>
         <div style={{ marginBottom: 20 }}>
-          <TextInputLabel>Name</TextInputLabel>
-          <TextInput placeholder='Jane Smith' />
+          <TextInputLabel>Name *</TextInputLabel>
+          <TextInput
+            value={nameState.value}
+            onChange={(e) => nameState.onChange(e.target.value)}
+            onBlur={nameState.onBlur}
+            placeholder='Jane Smith'
+            error={nameState.showError}
+            onEnterKey={handleSubmit}
+          />
           {nameState.showError && (
             <ValidationError>{nameState.errorMessage}</ValidationError>
           )}
@@ -42,26 +50,52 @@ export default function UserForm() {
 
         <div style={{ marginBottom: 20 }}>
           <TextInputLabel>Role</TextInputLabel>
-          <TextInput placeholder='Software Engineer' />
+          <TextInput
+            value={roleState.value}
+            onChange={(e) => roleState.onChange(e.target.value)}
+            onBlur={roleState.onBlur}
+            placeholder='Software Engineer'
+            error={roleState.showError}
+            onEnterKey={handleSubmit}
+          />
           {roleState.showError && (
             <ValidationError>{roleState.errorMessage}</ValidationError>
           )}
         </div>
 
         <div style={{ marginBottom: 20 }}>
-          <TextInputLabel>Email address</TextInputLabel>
-          <TextInput placeholder='jane@me.com' />
+          <TextInputLabel>Email address *</TextInputLabel>
+          <TextInput
+            value={emailAddressState.value}
+            onChange={(e) => emailAddressState.onChange(e.target.value)}
+            onBlur={emailAddressState.onBlur}
+            placeholder='jane@me.com'
+            error={emailAddressState.showError}
+            onEnterKey={handleSubmit}
+          />
           {emailAddressState.showError && (
             <ValidationError>{emailAddressState.errorMessage}</ValidationError>
           )}
         </div>
 
-        <div style={{ marginBottom: 20 }}>
-          <TextInputLabel>Password</TextInputLabel>
-          <TextInput placeholder='Password' />
+        <div style={{ marginBottom: 40 }}>
+          <TextInputLabel>Password *</TextInputLabel>
+          <TextInput
+            type='password'
+            value={passwordState.value}
+            onChange={(e) => passwordState.onChange(e.target.value)}
+            onBlur={passwordState.onBlur}
+            placeholder='Password'
+            error={passwordState.showError}
+            onEnterKey={handleSubmit}
+          />
           {passwordState.showError && (
             <ValidationError>{passwordState.errorMessage}</ValidationError>
           )}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button>Submit</Button>
         </div>
       </Card>
     </Container>
