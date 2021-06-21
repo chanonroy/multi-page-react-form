@@ -18,10 +18,17 @@ export const validEmail = (errorMessage: string) => (value: string) =>
   !!value && !isValidEmailAddress(value) ? errorMessage : null
 
 /**
- * Shows error message if value does not match submitted value
+ * Shows error message if value does not match regex pattern
  * @param errorMessage - The error message to show.
- * @param match - String to match against the value
  */
-export const isMatch =
-  (errorMessage: string, match: string) => (value: string) =>
-    !!value && value === match ? null : errorMessage
+export const matchRegex =
+  (regex: RegExp, errorMessage: string) => (value: string) =>
+    !!value && value.match(regex) ? null : errorMessage
+
+/**
+ * Shows error message if value is not of minimum length
+ * @param errorMessage - The error message to show.
+ */
+export const minLength =
+  (minLength: number, errorMessage: string) => (value: string) =>
+    !!value && value.length >= minLength ? null : errorMessage

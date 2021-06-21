@@ -1,3 +1,4 @@
+import { UserPayload } from '../../@types'
 import Button from '../../components/button'
 import Card from '../../components/card'
 import Container from '../../components/container'
@@ -5,9 +6,18 @@ import TextInput from '../../components/text-input'
 import TextInputLabel from '../../components/text-input-label'
 import ValidationError from '../../components/validation-error'
 import useTextInputState from '../../hooks/use-text-input-state'
-import { notEmpty, validEmail } from '../../utils/validations'
+import {
+  matchRegex,
+  minLength,
+  notEmpty,
+  validEmail,
+} from '../../utils/validations'
 
-export default function UserForm() {
+export default function UserForm({
+  onSubmit,
+}: {
+  onSubmit: (user: UserPayload) => void
+}) {
   const nameState = useTextInputState({
     validations: [notEmpty('Name is required')],
   })
@@ -19,15 +29,39 @@ export default function UserForm() {
     ],
   })
   const passwordState = useTextInputState({
-    validations: [notEmpty('Password is required')],
+    validations: [
+      notEmpty('Password is required'),
+      matchRegex(/[A-Z]+/, 'At least one uppercase letter is required'),
+      matchRegex(/[a-z]+/, 'At least one lowercase letter is required'),
+      matchRegex(/[0-9]+/, 'At least one number is required'),
+      minLength(9, 'Minimum 8 characters'),
+    ],
   })
-  // over 9 chars length
-  // has at least one number
-  // has at least one upper case
-  // has at least one lower case
 
   const handleSubmit = () => {
-    //
+    // Blur all fields
+    nameState.onBlur()
+    roleState.onBlur()
+    emailAddressState.onBlur()
+    passwordState.onBlur()
+
+    // Prevent submit on validation error
+    if (
+      nameState.hasError ||
+      roleState.hasError ||
+      emailAddressState.hasError ||
+      passwordState.hasError
+    ) {
+      return
+    }
+
+    // Send payload
+    onSubmit({
+      name: nameState.cleanValue,
+      role: roleState.cleanValue,
+      emailAddress: emailAddressState.cleanValue,
+      password: passwordState.cleanValue,
+    })
   }
 
   return (
