@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { PrivacyPayload, UserPayload } from './@types'
+import { PrivacyPayload, Step, UserPayload } from './@types'
 import Container from './components/container'
 import { StatusItem, StatusItemContainer } from './components/status-item'
 import DoneStep from './screens/done-step'
@@ -7,7 +7,7 @@ import PrivacyStep from './screens/privacy-step'
 import UserStep from './screens/user-step'
 
 function App() {
-  const [step, setStep] = useState<'user' | 'privacy' | 'done'>('user')
+  const [step, setStep] = useState<Step>(Step.User)
   const [formState, setFormState] = useState<UserPayload & PrivacyPayload>({
     name: '',
     role: '',
@@ -23,7 +23,7 @@ function App() {
       ...payload,
     }
     setFormState(newFormState)
-    setStep('privacy')
+    setStep(Step.Privacy)
   }
 
   const handlePrivacySubmit = (payload: PrivacyPayload) => {
@@ -40,19 +40,22 @@ function App() {
     console.log(newFormState)
 
     // change step
-    setStep('done')
+    setStep(Step.Done)
   }
 
   return (
     <Container style={{ paddingTop: 40, paddingBottom: 20 }}>
+      {/* Progress Bar */}
       <StatusItemContainer>
-        <StatusItem active={step === 'user'}>User</StatusItem>
-        <StatusItem active={step === 'privacy'}>Privacy</StatusItem>
-        <StatusItem active={step === 'done'}>Done</StatusItem>
+        <StatusItem active={step === Step.User}>User</StatusItem>
+        <StatusItem active={step === Step.Privacy}>Privacy</StatusItem>
+        <StatusItem active={step === Step.Done}>Done</StatusItem>
       </StatusItemContainer>
-      {step === 'user' && <UserStep onSubmit={handleUserSubmit} />}
-      {step === 'privacy' && <PrivacyStep onSubmit={handlePrivacySubmit} />}
-      {step === 'done' && <DoneStep />}
+
+      {/* Each Step of the Form wizard */}
+      {step === Step.User && <UserStep onSubmit={handleUserSubmit} />}
+      {step === Step.Privacy && <PrivacyStep onSubmit={handlePrivacySubmit} />}
+      {step === Step.Done && <DoneStep />}
     </Container>
   )
 }

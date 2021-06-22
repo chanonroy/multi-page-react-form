@@ -7,6 +7,12 @@ export const Colors = {
   background: '#F1F5FE',
 }
 
+export enum Step {
+  User = 'user',
+  Privacy = 'privacy',
+  Done = 'done',
+}
+
 export interface UserPayload {
   name: string
   role: string
