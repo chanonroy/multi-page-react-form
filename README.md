@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+<p align="center">
+  <img alt="roy" src="./public/favicon.png" width="60" />
+</p>
+<h1 align="center">
+  Multi Section React Form
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  Lightweight example of managing form state across multiple screens
+</p>
 
-## Available Scripts
+## 📦 Project Setup
 
-In the project directory, you can run:
+1.  **Install dependencies**
 
-### `yarn start`
+    Use the [yarn](https://classic.yarnpkg.com/en/) package manager to install dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    ```shell
+    yarn
+    ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ 
+2.  **Run development server**
 
-### `yarn test`
+    Start the development server with the following command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```shell
+    yarn start
+    ```
+3.  **Visit local environment**
 
-### `yarn build`
+    Navigate to `http://localhost:3000` to see the app in action
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🤖 Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Trying to keep things light, the app only has a few core dependencies/concepts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **React** - ui rendering
+- **Create React App** - to quickly scaffold React for the purposes of the exercise
+- **Typescript** - static type checking
+- **Eslint/Prettier** - code linting and automatic IDE formatting
+- **Styled-Components** - to allow for CSS-in-JS component composition
+- **Jest** - test task runner 
+- **react-test-renderer** - a lightweight React package for testing
+- **Github Actions** - to run tests in a CI environment
 
-### `yarn eject`
+Things that I tried to avoid, but may consider adding in the future
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Formik (with yup) / React Final Form** - I've found these packages to add bloat in the past, so I tried to keep all the validation logic to be custom through a hook called `use-text-input-state`.
+- **React Router** - It was unclear from the exercise description about whether form pages can be deep-linked into, such as going straight into `/privacy` and having the pre-saved fields re-hydrate the form. If this was the case, it would be good to implement client-side routing.
