@@ -1,3 +1,6 @@
+/**
+ * Email address regex pattern to test against
+ */
 const isValidEmailAddress = (value: string) =>
   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
     value
@@ -19,6 +22,7 @@ export const validEmail = (errorMessage: string) => (value: string) =>
 
 /**
  * Shows error message if value does not match regex pattern
+ * @param regex - The regex pattern to match against
  * @param errorMessage - The error message to show.
  */
 export const matchRegex =
@@ -27,6 +31,7 @@ export const matchRegex =
 
 /**
  * Shows error message if value is not of minimum length
+ * @param minLength - The minimum length of the string
  * @param errorMessage - The error message to show.
  */
 export const minLength =
