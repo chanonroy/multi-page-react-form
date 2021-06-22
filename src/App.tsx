@@ -6,7 +6,7 @@ import DoneStep from './screens/done-step'
 import PrivacyStep from './screens/privacy-step'
 import UserStep from './screens/user-step'
 
-function App() {
+export default function App() {
   const [step, setStep] = useState<Step>(Step.User)
   const [formState, setFormState] = useState<UserPayload & PrivacyPayload>({
     name: '',
@@ -59,5 +59,3 @@ function App() {
     </Container>
   )
 }
-
-export default App
