@@ -48,3 +48,8 @@ Things that I tried to avoid, but may consider adding in the future
 
 - **Formik (with yup) / React Final Form** - I've found these packages to add bloat in the past, so I tried to keep all the validation logic to be custom through a hook called `use-text-input-state`.
 - **React Router** - It was unclear from the exercise description about whether form pages can be deep-linked into, such as going straight into `/privacy` and having the pre-saved fields re-hydrate the form. If this was the case, it would be good to implement client-side routing.
+
+## Screenshot
+
+![image](https://github.com/chanonroy/multi-page-react-form/blob/main/src/images/screenshot.png)
+
